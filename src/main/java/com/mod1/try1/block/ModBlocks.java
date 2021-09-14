@@ -21,12 +21,20 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS
             = DeferredRegister.create(ForgeRegistries.BLOCKS,Main.MOD_ID);
 
+  //  public static final RegistryObject<Block> ITEM_ONE_ORE = BLOCKS.register("item_one_ore",
+  //          ()-> new Block(BlockBehaviour.Properties.of(Material.STONE)
+  //                  .sound(SoundType.STONE)
+  //                  .requiresCorrectToolForDrops()
+  //                  .strength(1f,1f)
+  //          ));
+
+
     public static final RegistryObject<Block> ITEM_ONE_ORE = registerBlock("item_one_ore",
-            ()-> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .sound(SoundType.STONE)
+            ()-> new Block(BlockBehaviour.Properties.of(Material.METAL)
+                    .sound(SoundType.METAL)
                     .requiresCorrectToolForDrops()
-                    .strength(1f,1f)
-                    ));
+                    .strength(2f)
+                   ));
 
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block){
@@ -35,7 +43,7 @@ public class ModBlocks {
         return toReturn;
     }
 
-    private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block){
+    private static <T extends Block>void registerBlockItem(String name, RegistryObject<T> block){
         ModItems.ITEMS.register(name, () ->  new BlockItem(block.get(), new Item.Properties().tab(ModItemGroup.MOD1_GROUP)));
     }
 
