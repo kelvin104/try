@@ -21,22 +21,17 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS
             = DeferredRegister.create(ForgeRegistries.BLOCKS,Main.MOD_ID);
 
-  //  public static final RegistryObject<Block> ITEM_ONE_ORE = BLOCKS.register("item_one_ore",
-  //          ()-> new Block(BlockBehaviour.Properties.of(Material.STONE)
-  //                  .sound(SoundType.STONE)
-  //                  .requiresCorrectToolForDrops()
-  //                  .strength(1f,1f)
-  //          ));
-
-
     public static final RegistryObject<Block> ITEM_ONE_ORE = registerBlock("item_one_ore",
             ()-> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .sound(SoundType.METAL)
                     .requiresCorrectToolForDrops()
                     .strength(2f)
                    ));
-
-
+    public static final RegistryObject<Block> NEW_DIRT = registerBlock("new_dirt",
+            ()-> new Block(BlockBehaviour.Properties.of(Material.DIRT)
+                    .sound(SoundType.GRASS)
+                    .strength(0.5f)
+            ));
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

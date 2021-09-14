@@ -1,5 +1,6 @@
 {
   "item.try1.item_one" : "item_1",
   "block.try1.item_one_ore": "item_1_ore",
+  "block.try1.new_dirt": "NewDirt",
   "itemGroup.mod1tab": "Mod 1"
 }
