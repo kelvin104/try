@@ -2,6 +2,7 @@ package com.mod1.try1.item;
 
 import com.mod1.try1.Main;
 import com.mod1.try1.block.ModBlocks;
+import com.mod1.try1.item.custom.complex_item_one;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -18,7 +19,8 @@ public class ModItems {
 
     public static final RegistryObject<Item> ITEM_ONE = ITEMS.register("item_one",
             () -> new Item(new Item.Properties().tab(ModItemGroup.MOD1_GROUP)));
-
+    public static final RegistryObject<Item> COMPLEX_ITEM_ONE = ITEMS.register("complex_item_one",
+            () -> new complex_item_one(new Item.Properties().tab(ModItemGroup.MOD1_GROUP)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
