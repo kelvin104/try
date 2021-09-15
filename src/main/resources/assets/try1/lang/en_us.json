@@ -3,5 +3,6 @@
   "block.try1.item_one_ore": "item_1_ore",
   "block.try1.new_dirt": "NewDirt",
   "item.try1.complex_item_one" : "complex_item_1",
+  "item.try1.mod_bottle" : "modBottle",
   "itemGroup.mod1tab": "Mod 1"
 }

@@ -13,15 +13,15 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Objects;
 
-public class complex_item_one extends Item {
-    public complex_item_one(Properties p_41383_) {
+public class complex_item_one_class extends Item {
+    public complex_item_one_class(Properties p_41383_) {
         super(p_41383_);
     }
 
     @Override
     public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
         Level level = context.getLevel();
-        if (!level.isClientSide){
+        if (level.isClientSide()){
             Player player_entity = Objects.requireNonNull(context.getPlayer());
             BlockState clicked_block = level.getBlockState(context.getClickedPos());
             rightClick1(clicked_block, context, player_entity);
@@ -36,7 +36,7 @@ public class complex_item_one extends Item {
     }
 
     ////for potion effect
-    private void applyEffect2(Player player_entity) {
+    public static void applyEffect2(Player player_entity) {
         player_entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 200));
     }
 

@@ -1,6 +1,7 @@
 package com.mod1.try1.block;
 
 import com.mod1.try1.Main;
+import com.mod1.try1.block.custom.new_dirt_block_class;
 import com.mod1.try1.item.ModItemGroup;
 import com.mod1.try1.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -32,7 +33,7 @@ public class ModBlocks {
 
 
     public static final RegistryObject<Block> NEW_DIRT = registerBlock("new_dirt",
-            ()-> new Block(BlockBehaviour.Properties.of(Material.DIRT)
+            ()-> new new_dirt_block_class(BlockBehaviour.Properties.of(Material.DIRT)
                     .sound(SoundType.GRASS)
                     .strength(0.5f)
             ));
