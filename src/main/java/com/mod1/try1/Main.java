@@ -1,6 +1,7 @@
 package com.mod1.try1;
 
 import com.mod1.try1.block.ModBlocks;
+import com.mod1.try1.effect.ModEffects;
 import com.mod1.try1.item.ModItems;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -33,6 +34,8 @@ public class Main
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModEffects.MOB_EFFECTS.register(eventBus);
+        ModEffects.POTIONS.register(eventBus);
         eventBus.addListener(this::setup);
         // Register the enqueueIMC method for modloading
         eventBus.addListener(this::enqueueIMC);

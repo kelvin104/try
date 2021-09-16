@@ -19,8 +19,8 @@ public class ModItems {
     public static final RegistryObject<Item> COMPLEX_ITEM_ONE = ITEMS.register("complex_item_one",
             () -> new complex_item_one_class(new Item.Properties().tab(ModItemGroup.MOD1_GROUP)));
 
-    public static final RegistryObject<Item> MOD_BOTTLE = ITEMS.register("mod_bottle",
-            () -> new mod_bottle_class(new Item.Properties().tab(ModItemGroup.MOD1_GROUP)));
+   // public static final RegistryObject<Item> MOD_BOTTLE = ITEMS.register("mod_bottle",
+     //       () -> new mod_bottle_class(new Item.Properties().tab(ModItemGroup.MOD1_GROUP)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

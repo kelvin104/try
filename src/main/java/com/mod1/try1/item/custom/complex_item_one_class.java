@@ -32,7 +32,12 @@ public class complex_item_one_class extends Item {
     private void rightClick1(BlockState clicked_block, UseOnContext context, Player player_entity) {
         applyEffect(player_entity,5);
         applyEffect2(player_entity);
+        applyEffect3(player_entity);
 
+    }
+
+    public static void applyEffect3(Player player_entity) {
+        player_entity.setSpeed(-2F);
     }
 
     ////for potion effect
