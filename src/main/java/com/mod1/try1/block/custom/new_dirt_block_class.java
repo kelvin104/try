@@ -34,7 +34,7 @@ public class new_dirt_block_class extends Block {
     @Override
     @ParametersAreNonnullByDefault
     public void stepOn(Level level, BlockPos block_pos, BlockState block_state, Entity entity) {
-        complex_item_one_class.applyEffect(entity,5);
+        complex_item_one_class.applyEffect1(entity,5);
         if (entity instanceof Player){
             complex_item_one_class.applyEffect2((Player)entity);
         }
