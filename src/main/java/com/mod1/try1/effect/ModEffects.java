@@ -26,10 +26,10 @@ public class ModEffects {
     public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, Main.MOD_ID);
     public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(ForgeRegistries.POTIONS, Main.MOD_ID);
 
-    public static final RegistryObject<MobEffect> SICKNESS_EFFECT = MOB_EFFECTS.register("sickness_effect", sickness_effect_class::new);
+    public static final RegistryObject<MobEffect> SICKNESS= MOB_EFFECTS.register("sickness", sickness_effect_class::new);
 
    public static final RegistryObject<Potion> MOD_BOTTLE = POTIONS.register("mod_bottle",
-           () -> new Potion(new MobEffectInstance(SICKNESS_EFFECT.get(),1200,0)));
+           () -> new Potion(new MobEffectInstance(SICKNESS.get(),100,0)));
 
 
 

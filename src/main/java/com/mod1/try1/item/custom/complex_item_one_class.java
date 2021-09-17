@@ -1,5 +1,6 @@
 package com.mod1.try1.item.custom;
 
+import com.mod1.try1.effect.ModEffects;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -30,23 +31,21 @@ public class complex_item_one_class extends Item {
     }
 
     private void rightClick1(BlockState clicked_block, UseOnContext context, Player player_entity) {
-        applyEffect1(player_entity,5);
-        applyEffect2(player_entity);
-        applyEffect3(player_entity);
+        //applyEffect1(player_entity,5);
+        player_entity.addEffect(new MobEffectInstance(ModEffects.SICKNESS.get(), 100),player_entity);
+
 
     }
 
-    public static void applyEffect3(Player player_entity) {
-        player_entity.giveExperienceLevels(3);
-    }
+
 
     ////for potion effect
     public static void applyEffect2(Player player_entity) {
-        player_entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 200));
+        player_entity.addEffect(new MobEffectInstance(ModEffects.SICKNESS.get(), 100),player_entity);
     }
 
     ////for entity effect
-    public static void applyEffect1(Entity entity, int second){
-        entity.setSecondsOnFire(second);
-    }
+    //public static void applyEffect1(Entity entity, int second){
+  //      entity.setSecondsOnFire(second);
+ //   }
 }

@@ -1,5 +1,7 @@
 package com.mod1.try1.block.custom;
 
+import com.mod1.try1.effect.ModEffects;
+import com.mod1.try1.item.ModItems;
 import com.mod1.try1.item.custom.complex_item_one_class;
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -18,8 +20,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.client.event.ColorHandlerEvent;
+import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -34,7 +38,7 @@ public class new_dirt_block_class extends Block {
     @Override
     @ParametersAreNonnullByDefault
     public void stepOn(Level level, BlockPos block_pos, BlockState block_state, Entity entity) {
-        complex_item_one_class.applyEffect1(entity,5);
+       // complex_item_one_class.applyEffect1(entity,5);
         if (entity instanceof Player){
             complex_item_one_class.applyEffect2((Player)entity);
         }
@@ -48,7 +52,8 @@ public class new_dirt_block_class extends Block {
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if(level.isClientSide()){
             if((hand == InteractionHand.MAIN_HAND) && (player.getMainHandItem().getItem() == Items.GLASS_BOTTLE) ){
-                player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 200));
+                //player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 200));
+                player.setItemInHand(hand, new ItemStack(ModItems.MOD_BOTTLE_ITEM.get()));
 
             }
         }
