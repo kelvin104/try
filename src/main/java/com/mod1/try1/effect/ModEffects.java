@@ -10,11 +10,13 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.PotionItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+import net.minecraftforge.common.brewing.IBrewingRecipe;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -28,9 +30,50 @@ public class ModEffects {
 
     public static final RegistryObject<MobEffect> SICKNESS= MOB_EFFECTS.register("sickness", sickness_effect_class::new);
 
-   public static final RegistryObject<Potion> MOD_BOTTLE = POTIONS.register("mod_bottle",
-           () -> new Potion(new MobEffectInstance(SICKNESS.get(),100,0)));
+   public static final RegistryObject<Potion> SICKNESS_POTION = POTIONS.register("sickness",
+           () -> new Potion(new MobEffectInstance(SICKNESS.get(),1200,0)));
+    public static final RegistryObject<Potion> LONG_SICKNESS_POTION = POTIONS.register("long_sickness",
+            () -> new Potion(new MobEffectInstance(SICKNESS.get(),2400,0)));
+    public static final RegistryObject<Potion> STRONG_SICKNESS_POTION = POTIONS.register("strong_sickness",
+            () -> new Potion(new MobEffectInstance(SICKNESS.get(),1200,2)));
 
+    public static void addPotionRecipes(){
+        BrewingRecipeRegistry.addRecipe(new NewBrewingRecipes(Potions.AWKWARD,ModItems.MOD_COLLECTOR_FILLED.get(),SICKNESS_POTION.get()));
+        BrewingRecipeRegistry.addRecipe(new NewBrewingRecipes(SICKNESS_POTION.get(),Items.GLOWSTONE_DUST,STRONG_SICKNESS_POTION.get()));
+        BrewingRecipeRegistry.addRecipe(new NewBrewingRecipes(SICKNESS_POTION.get(),Items.REDSTONE,LONG_SICKNESS_POTION.get()));
+
+
+    }
+
+    private static class NewBrewingRecipes implements IBrewingRecipe{
+        private final Potion bottleInput;
+        private final Item itemInput;
+        private final ItemStack output;
+        public NewBrewingRecipes(Potion bottleInput, Item itemInput, Potion outputIn){
+            this.bottleInput=bottleInput;
+            this.itemInput=itemInput;
+            this.output = PotionUtils.setPotion(new ItemStack(Items.POTION),outputIn);
+        }
+
+        @Override
+        public boolean isInput(ItemStack input) {
+            return PotionUtils.getPotion(input).equals(this.bottleInput);
+        }
+
+        @Override
+        public boolean isIngredient(ItemStack ingredient) {
+            return ingredient.getItem().equals(this.itemInput);
+        }
+
+        @Override
+        public ItemStack getOutput(ItemStack input, ItemStack ingredient) {
+            if(isInput(input)&&isIngredient(ingredient)){
+                return this.output.copy();
+            }else{
+                return ItemStack.EMPTY;
+            }
+        }
+    }
 
 
 

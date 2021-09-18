@@ -3,6 +3,10 @@ package com.mod1.try1.item;
 import com.mod1.try1.Main;
 import com.mod1.try1.item.custom.complex_item_one_class;
 import com.mod1.try1.item.custom.mod_bottle_class;
+import com.mod1.try1.item.custom.mod_collector_class;
+import com.mod1.try1.item.custom.mod_collector_filled_class;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -20,15 +24,23 @@ public class ModItems {
     public static final RegistryObject<Item> COMPLEX_ITEM_ONE = ITEMS.register("complex_item_one",
             () -> new complex_item_one_class(new Item.Properties().tab(ModItemGroup.MOD1_GROUP)));
 
-    public static final RegistryObject<Item> MOD_BOTTLE_ITEM = ITEMS.register("mod_bottle_item",
+    public static final RegistryObject<Item> MOD_COLLECTOR = ITEMS.register("mod_collector",
+            () -> new mod_collector_class(new Item.Properties().tab(ModItemGroup.MOD1_GROUP).stacksTo(1)));
+
+    public static final RegistryObject<Item> MOD_COLLECTOR_FILLED = ITEMS.register("mod_collector_filled",
+            () -> new mod_collector_filled_class(new Item.Properties().tab(ModItemGroup.MOD1_GROUP).stacksTo(1)));
+
+  /*  public static final RegistryObject<Item> MOD_BOTTLE_ITEM = ITEMS.register("mod_bottle_item",
             () -> new mod_bottle_class
                     (
                             (new Item.Properties())
-                            //.craftRemainder(Items.GLASS_BOTTLE)
-                            //.stacksTo(16)
+                                    .craftRemainder(Items.GLASS_BOTTLE)
+                                    .food((new FoodProperties.Builder()).nutrition(0).saturationMod(0F).build())
                                     .tab(ModItemGroup.MOD1_GROUP)
+                                    .stacksTo(1)
                     )
     );
+    */
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

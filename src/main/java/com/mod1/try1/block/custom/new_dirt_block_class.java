@@ -53,7 +53,7 @@ public class new_dirt_block_class extends Block {
         if(level.isClientSide()){
             if((hand == InteractionHand.MAIN_HAND) && (player.getMainHandItem().getItem() == Items.GLASS_BOTTLE) ){
                 //player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 200));
-                player.setItemInHand(hand, new ItemStack(ModItems.MOD_BOTTLE_ITEM.get()));
+                player.setItemInHand(hand, new ItemStack(ModItems.MOD_COLLECTOR_FILLED.get()));
 
             }
         }

@@ -17,33 +17,17 @@ import net.minecraft.world.level.Level;
 
 public class mod_bottle_class extends Item {
     private static final int DRINK_DURATION = 40;
-    public int getUseDuration(ItemStack p_41360_) {
-        return 40;
+    public mod_bottle_class(Item.Properties properties) {
+        super(properties);
     }
-
-    public UseAnim getUseAnimation(ItemStack p_41358_) {
-        return UseAnim.DRINK;
-    }
-
-    public SoundEvent getDrinkingSound() {
-        return SoundEvents.VILLAGER_AMBIENT;
-    }
-
-    public SoundEvent getEatingSound() {
-        return SoundEvents.VILLAGER_AMBIENT;
-    }
-    public InteractionResultHolder<ItemStack> use(Level p_41352_, Player p_41353_, InteractionHand p_41354_) {
-        return ItemUtils.startUsingInstantly(p_41352_, p_41353_, p_41354_);
-    }
-
     public ItemStack finishUsingItem(ItemStack p_41348_, Level p_41349_, LivingEntity p_41350_) {
         super.finishUsingItem(p_41348_, p_41349_, p_41350_);
 
         if (p_41350_ instanceof Player){
-           if (!(((Player)p_41350_).isCreative())){
-               p_41348_.shrink(1);
+            if (!(((Player)p_41350_).isCreative())){
+                p_41348_.shrink(1);
 
-           }
+            }
 
         }
 
@@ -71,7 +55,25 @@ public class mod_bottle_class extends Item {
             return p_41348_;
         }
     }
-    public mod_bottle_class(Properties properties) {
-        super(properties);
+    public int getUseDuration(ItemStack p_41360_) {
+        return 40;
     }
+
+    public UseAnim getUseAnimation(ItemStack p_41358_) {
+        return UseAnim.DRINK;
+    }
+
+    public SoundEvent getDrinkingSound() {
+        return SoundEvents.EVOKER_FANGS_ATTACK;
+    }
+
+    public SoundEvent getEatingSound() {
+        return SoundEvents.EVOKER_FANGS_ATTACK;
+    }
+    public InteractionResultHolder<ItemStack> use(Level p_41352_, Player p_41353_, InteractionHand p_41354_) {
+        return ItemUtils.startUsingInstantly(p_41352_, p_41353_, p_41354_);
+    }
+
+
+
 }
