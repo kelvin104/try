@@ -2,13 +2,16 @@ package com.mod1.try1;
 
 import com.mod1.try1.block.ModBlocks;
 import com.mod1.try1.effect.ModEffects;
+import com.mod1.try1.entity.ModEntities;
 import com.mod1.try1.item.ModItems;
+import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -32,6 +35,7 @@ public class Main
     public Main() {
         // Register the setup method for modloading
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ModEntities.ENTITY_TYPES.register(eventBus);
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
         ModEffects.MOB_EFFECTS.register(eventBus);
@@ -52,6 +56,12 @@ public class Main
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
         ModEffects.addPotionRecipes();
+        //DeferredWorkQueue.runLater(
+        //() -> {
+
+        //
+        // }
+        // )
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
