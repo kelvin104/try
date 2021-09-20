@@ -3,12 +3,18 @@ package com.mod1.try1;
 import com.mod1.try1.block.ModBlocks;
 import com.mod1.try1.effect.ModEffects;
 import com.mod1.try1.entity.ModEntities;
+import com.mod1.try1.entity.custom.new_mob_1_class;
 import com.mod1.try1.item.ModItems;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
@@ -17,11 +23,15 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
+import net.minecraftforge.fmllegacy.network.FMLMCRegisterPacketHandler;
 import net.minecraftforge.fmlserverevents.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -50,12 +60,21 @@ public class Main
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+   // @SuppressWarnings("deprecation")
     private void setup(final FMLCommonSetupEvent event)
     {
-        // some preinit code
+
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
         ModEffects.addPotionRecipes();
+        //
+        //EntityRenderers.register();
+        //
+       // Map<EntityType<? extends LivingEntity>, AttributeSupplier> MOD1_ATTRIBUTES = new HashMap<>();
+      //  new EntityAttributeCreationEvent(MOD1_ATTRIBUTES);
+       //  ParallelDispatchEvent.enqueueWork(() ->{
+      //      EntityAttributeCreationEvent.put(ModEntities.NEW_MOB_1.get(), new_mob_1_class.setAttributes().build());
+      //  });
         //DeferredWorkQueue.runLater(
         //() -> {
 
