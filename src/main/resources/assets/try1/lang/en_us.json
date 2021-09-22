@@ -3,6 +3,7 @@
   "block.try1.item_one_ore": "item_1_ore",
   "block.try1.new_dirt": "NewDirt",
   "item.try1.complex_item_one" : "complex_item_1",
+  "item.try1.weapon_one" : "Baton",
   "item.try1.mod_collector" : "collector",
   "item.try1.mod_collector_filled" : "filled collector",
   "effect.try1.sickness" : "Sickness",

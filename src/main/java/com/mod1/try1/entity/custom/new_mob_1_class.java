@@ -11,6 +11,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -29,7 +30,7 @@ public class new_mob_1_class extends Mob {
     public static AttributeSupplier.Builder setAttributes(){
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH,20.0F)
-                .add(Attributes.ATTACK_DAMAGE,0.2F)
+                .add(Attributes.ATTACK_DAMAGE,0.1F)
                 .add(Attributes.ATTACK_SPEED,5.0F)
                 .add(Attributes.MOVEMENT_SPEED,2.0F)
                 ;
@@ -42,6 +43,7 @@ public class new_mob_1_class extends Mob {
         this.goalSelector.addGoal(1,new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class,8.0F));
         this.goalSelector.addGoal(1,new NearestAttackableTargetGoal<>(this,Player.class,true));
+        //this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)));
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.mod1.try1;
 
 import com.mod1.try1.block.ModBlocks;
+import com.mod1.try1.client.entity.model.new_mob_1_model;
+import com.mod1.try1.client.entity.new_mob_1_renderer;
 import com.mod1.try1.effect.ModEffects;
 import com.mod1.try1.entity.ModEntities;
 import com.mod1.try1.entity.custom.new_mob_1_class;
@@ -12,6 +14,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -55,18 +58,26 @@ public class Main
         eventBus.addListener(this::enqueueIMC);
         // Register the processIMC method for modloading
         eventBus.addListener(this::processIMC);
+        eventBus.addListener(this::onAttributeCreate);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-   // @SuppressWarnings("deprecation")
+
+    public void onAttributeCreate(EntityAttributeCreationEvent event) {
+        event.put(ModEntities.NEW_MOB_1.get(), new_mob_1_class.setAttributes().build());
+    }
+
+
+
     private void setup(final FMLCommonSetupEvent event)
     {
 
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
         ModEffects.addPotionRecipes();
+
         //
         //EntityRenderers.register();
         //
@@ -101,6 +112,16 @@ public class Main
     public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+
+    @SubscribeEvent
+    public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(new_mob_1_model.LAYER, new_mob_1_model::createBodyLayer);
+    }
+
+    @SubscribeEvent
+    public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(ModEntities.NEW_MOB_1.get(), new_mob_1_renderer::new);
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
