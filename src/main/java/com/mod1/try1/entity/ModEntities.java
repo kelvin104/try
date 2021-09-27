@@ -19,7 +19,7 @@ public class ModEntities {
                     .build(new ResourceLocation(Main.MOD_ID,"new_mob_1").toString())
     );
     public static final RegistryObject<EntityType<mod_villager_class>> MOD_VILLAGER = ENTITY_TYPES.register("mod_villager",
-            () -> EntityType.Builder.<mod_villager_class>of(mod_villager_class::new, MobCategory.CREATURE).sized(0.6F,1.95F).clientTrackingRange(8)
+            () -> EntityType.Builder.<mod_villager_class>of(mod_villager_class::new, MobCategory.MONSTER).sized(0.6F,1.95F).clientTrackingRange(8)
                     .build(new ResourceLocation(Main.MOD_ID,"mod_villager").toString())
     );
 

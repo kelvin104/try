@@ -24,12 +24,14 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.*;
+import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
 import net.minecraftforge.fmllegacy.common.network.PacketLoggingHandler;
 import net.minecraftforge.fmllegacy.network.FMLMCRegisterPacketHandler;
 import net.minecraftforge.fmlserverevents.FMLServerStartingEvent;
@@ -60,7 +62,7 @@ public class Main
         ModEffects.POTIONS.register(eventBus);
         eventBus.addListener(this::setup);
         eventBus.addListener(this::entityAttributeCreationEvent);
-        eventBus.addListener(this::registerLayer);
+      //  eventBus.addListener(this::registerLayer);
         eventBus.addListener(this::registerRenderer);
         // Register the enqueueIMC method for modloading
         eventBus.addListener(this::enqueueIMC);
@@ -74,10 +76,10 @@ public class Main
 
 
 
-    @SubscribeEvent
+    //@SubscribeEvent
     public void entityAttributeCreationEvent(EntityAttributeCreationEvent event) {
 
-        event.put(ModEntities.MOD_VILLAGER.get(), DefaultAttributes.getSupplier(null));
+       event.put(ModEntities.MOD_VILLAGER.get(), mod_villager_class.createAttributes().build());
     }
 
 
@@ -88,33 +90,26 @@ public class Main
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
         ModEffects.addPotionRecipes();
-        //DefaultAttributes.getSupplier(ModEntities.MOD_VILLAGER.get());
-     //   Map<EntityType<? extends LivingEntity>, AttributeSupplier> MOD_ATTRIBUTES = ForgeHooks.getAttributesView();
-       // EntityAttributeCreationEvent creationEvent = new EntityAttributeCreationEvent(MOD_ATTRIBUTES);
-        //creationEvent.put(ModEntities.MOD_VILLAGER.get(),mod_villager_class.createAttributes().build());
 
-        //RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ANGEL.get(), AngelEntityRender::new);
+      //     EntityAttributeCreationEvent creationEvent = new EntityAttributeCreationEvent()
+      //  ;
+      //  event.enqueueWork(()->{
 
-        //
-        //EntityRenderers.register();
-        //
-       // Map<EntityType<? extends LivingEntity>, AttributeSupplier> MOD1_ATTRIBUTES = new HashMap<>();
-      //  new EntityAttributeCreationEvent(MOD1_ATTRIBUTES);
-       //  ParallelDispatchEvent.enqueueWork(() ->{
-      //      EntityAttributeCreationEvent.put(ModEntities.NEW_MOB_1.get(), new_mob_1_class.setAttributes().build());
-      //  });
-        //DeferredWorkQueue.runLater(
-        //() -> {
+      //      creationEvent.put( ModEntities.MOD_VILLAGER.get(),mod_villager_class.MAP );
 
-        //
-        // }
-        // )
+     //   });
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
         // some example code to dispatch IMC to another mod
         InterModComms.sendTo("try1", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event)
+    {
+        // some example code to dispatch IMC to another mod
+
     }
 
     private void processIMC(final InterModProcessEvent event)
@@ -131,13 +126,13 @@ public class Main
         LOGGER.info("HELLO from server starting");
     }
 
-    public static ModelLayerLocation MOD_VILLAGER_LAYER= new ModelLayerLocation(new ResourceLocation("textures/entity/modvillager.png"), "mod_villager");
-    @SubscribeEvent
-    public void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event)
-    {
-        event.registerLayerDefinition(MOD_VILLAGER_LAYER, mod_villager_model::createBodyLayer);
-    }
-    @SubscribeEvent
+    //public static ModelLayerLocation MOD_VILLAGER_LAYER= new ModelLayerLocation(new ResourceLocation("textures/entity/modvillager.png"), "mod_villager");
+    //@SubscribeEvent
+   // public void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event)
+   // {
+    //    event.registerLayerDefinition(MOD_VILLAGER_LAYER, mod_villager_model::createBodyLayer);
+   // }
+    //@SubscribeEvent
     public void registerRenderer(EntityRenderersEvent.RegisterRenderers event)
     {
         event.registerEntityRenderer(ModEntities.MOD_VILLAGER.get(), mod_villager_renderer::new);
