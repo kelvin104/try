@@ -1,47 +1,27 @@
 package com.mod1.try1;
 
 import com.mod1.try1.block.ModBlocks;
+import com.mod1.try1.client.entity.mod_villager_neutral_renderer;
 import com.mod1.try1.client.entity.mod_villager_renderer;
-import com.mod1.try1.client.entity.model.mod_villager_model;
-import com.mod1.try1.client.entity.model.new_mob_1_model;
-import com.mod1.try1.client.entity.new_mob_1_renderer;
 import com.mod1.try1.effect.ModEffects;
 import com.mod1.try1.entity.ModEntities;
 import com.mod1.try1.entity.custom.mod_villager_class;
-import com.mod1.try1.entity.custom.new_mob_1_class;
+import com.mod1.try1.entity.custom.mod_villager_neutral;
 import com.mod1.try1.item.ModItems;
-import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.*;
-import net.minecraftforge.fml.event.lifecycle.ParallelDispatchEvent;
-import net.minecraftforge.fmllegacy.common.network.PacketLoggingHandler;
-import net.minecraftforge.fmllegacy.network.FMLMCRegisterPacketHandler;
 import net.minecraftforge.fmlserverevents.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.rmi.registry.RegistryHandler;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -80,6 +60,7 @@ public class Main
     public void entityAttributeCreationEvent(EntityAttributeCreationEvent event) {
 
        event.put(ModEntities.MOD_VILLAGER.get(), mod_villager_class.createAttributes().build());
+        event.put(ModEntities.MOD_VILLAGER_NEUTRAL.get(), mod_villager_neutral.createAttributes().build());
     }
 
 
@@ -136,6 +117,7 @@ public class Main
     public void registerRenderer(EntityRenderersEvent.RegisterRenderers event)
     {
         event.registerEntityRenderer(ModEntities.MOD_VILLAGER.get(), mod_villager_renderer::new);
+        event.registerEntityRenderer(ModEntities.MOD_VILLAGER_NEUTRAL.get(), mod_villager_neutral_renderer::new);
     }
 
 
