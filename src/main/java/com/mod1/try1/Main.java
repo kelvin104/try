@@ -1,12 +1,16 @@
 package com.mod1.try1;
 
 import com.mod1.try1.block.ModBlocks;
+import com.mod1.try1.client.entity.mod_villager_jaw_renderer;
 import com.mod1.try1.client.entity.mod_villager_neutral_renderer;
+import com.mod1.try1.client.entity.mod_villager_none_renderer;
 import com.mod1.try1.client.entity.mod_villager_renderer;
 import com.mod1.try1.effect.ModEffects;
 import com.mod1.try1.entity.ModEntities;
 import com.mod1.try1.entity.custom.mod_villager_class;
+import com.mod1.try1.entity.custom.mod_villager_jaw;
 import com.mod1.try1.entity.custom.mod_villager_neutral;
+import com.mod1.try1.entity.custom.mod_villager_none;
 import com.mod1.try1.item.ModItems;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -61,6 +65,8 @@ public class Main
 
        event.put(ModEntities.MOD_VILLAGER.get(), mod_villager_class.createAttributes().build());
         event.put(ModEntities.MOD_VILLAGER_NEUTRAL.get(), mod_villager_neutral.createAttributes().build());
+        event.put(ModEntities.MOD_VILLAGER_JAW.get(), mod_villager_jaw.createAttributes().build());
+        event.put(ModEntities.MOD_VILLAGER_NONE.get(), mod_villager_none.createAttributes().build());
     }
 
 
@@ -118,6 +124,8 @@ public class Main
     {
         event.registerEntityRenderer(ModEntities.MOD_VILLAGER.get(), mod_villager_renderer::new);
         event.registerEntityRenderer(ModEntities.MOD_VILLAGER_NEUTRAL.get(), mod_villager_neutral_renderer::new);
+        event.registerEntityRenderer(ModEntities.MOD_VILLAGER_JAW.get(), mod_villager_jaw_renderer::new);
+        event.registerEntityRenderer(ModEntities.MOD_VILLAGER_NONE.get(), mod_villager_none_renderer::new);
     }
 
 

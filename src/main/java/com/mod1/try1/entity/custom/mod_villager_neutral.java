@@ -47,7 +47,7 @@ public class mod_villager_neutral extends AbstractIllager implements NeutralMob 
     private static final float MOB_HEALTH = 8.0F;
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
     private UUID persistentAngerTarget;
-    private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(ModEntities.MOD_VILLAGER_NEUTRAL.get().getBaseClass(), EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(mod_villager_neutral.class, EntityDataSerializers.INT);
     static final Predicate<ItemEntity> ALLOWED_ITEMS = (p_37872_) -> {
         return !p_37872_.hasPickUpDelay() && p_37872_.isAlive() && ItemStack.matches(p_37872_.getItem(), ItemStack.EMPTY);
     };
@@ -87,7 +87,7 @@ public class mod_villager_neutral extends AbstractIllager implements NeutralMob 
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
 
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
+       // this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
         this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Zombie.class, false));
         this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal<>(this, true));
     }
@@ -120,7 +120,7 @@ public class mod_villager_neutral extends AbstractIllager implements NeutralMob 
     public boolean doHurtTarget(Entity p_30372_) {
         boolean flag = p_30372_.hurt(DamageSource.mobAttack(this), (float)((int)this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
         if (flag) {
-            //p_30372_.setDeltaMovement(p_30372_.getDeltaMovement().add(0.0D, (double)0.4F, 0.0D));
+            //p_30372_.setDeltaMovement(p_30372_.getDeltaMovement().add(0.0D, 0.4D, 0.0D));
             this.doEnchantDamageEffects(this, p_30372_);
         }
 
@@ -217,6 +217,7 @@ public class mod_villager_neutral extends AbstractIllager implements NeutralMob 
 
     @Override
     public boolean isAngryAt(LivingEntity p_21675_) {
+
         return NeutralMob.super.isAngryAt(p_21675_);
     }
 }
