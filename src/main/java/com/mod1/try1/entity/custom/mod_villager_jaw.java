@@ -92,6 +92,13 @@ public class mod_villager_jaw extends AbstractIllager implements NeutralMob {
         this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal<>(this, true));
     }
 
+   /* protected void dropCustomDeathLoot(DamageSource p_34291_, int p_34292_, boolean p_34293_) {
+        super.dropCustomDeathLoot(p_34291_, p_34292_, p_34293_);
+        ItemStack itemstack = new ItemStack(ModItems.MOD_COLLECTOR.get());
+        this.spawnAtLocation(itemstack);
+
+    }*/
+
     @Override
     public void die(DamageSource p_37847_) {
         super.die(p_37847_);

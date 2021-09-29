@@ -12,7 +12,12 @@ import com.mod1.try1.entity.custom.mod_villager_jaw;
 import com.mod1.try1.entity.custom.mod_villager_neutral;
 import com.mod1.try1.entity.custom.mod_villager_none;
 import com.mod1.try1.item.ModItems;
+import net.minecraft.core.Registry;
+import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -78,6 +83,7 @@ public class Main
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
         ModEffects.addPotionRecipes();
 
+
       //     EntityAttributeCreationEvent creationEvent = new EntityAttributeCreationEvent()
       //  ;
       //  event.enqueueWork(()->{
@@ -86,6 +92,7 @@ public class Main
 
      //   });
     }
+
 
     private void enqueueIMC(final InterModEnqueueEvent event)
     {

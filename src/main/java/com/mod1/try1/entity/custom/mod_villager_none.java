@@ -27,6 +27,7 @@ import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.AbstractIllager;
+import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -91,6 +92,14 @@ public class mod_villager_none extends AbstractIllager implements NeutralMob {
         this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Zombie.class, false));
         this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal<>(this, true));
     }
+
+
+    /*protected void dropCustomDeathLoot(DamageSource p_34291_, int p_34292_, boolean p_34293_) {
+        super.dropCustomDeathLoot(p_34291_, p_34292_, p_34293_);
+        ItemStack itemstack = new ItemStack(ModItems.MOD_COLLECTOR.get());
+        this.spawnAtLocation(itemstack);
+
+    }*/
 
     @Override
     public void die(DamageSource p_37847_) {
