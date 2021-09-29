@@ -8,6 +8,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.OreBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -25,7 +26,7 @@ public class ModBlocks {
 
 
     public static final RegistryObject<Block> ITEM_ONE_ORE = registerBlock("item_one_ore",
-            ()-> new Block(BlockBehaviour.Properties.of(Material.METAL)
+            ()-> new OreBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .sound(SoundType.METAL)
                     .requiresCorrectToolForDrops()
                     .strength(2f)

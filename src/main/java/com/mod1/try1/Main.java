@@ -12,6 +12,7 @@ import com.mod1.try1.entity.custom.mod_villager_jaw;
 import com.mod1.try1.entity.custom.mod_villager_neutral;
 import com.mod1.try1.entity.custom.mod_villager_none;
 import com.mod1.try1.item.ModItems;
+import com.mod1.try1.world.gen.ModOreGeneration;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -82,6 +83,9 @@ public class Main
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
         ModEffects.addPotionRecipes();
+        event.enqueueWork(() -> {
+            ModOreGeneration.registerConfiguredFeatures();
+        });
 
 
       //     EntityAttributeCreationEvent creationEvent = new EntityAttributeCreationEvent()
